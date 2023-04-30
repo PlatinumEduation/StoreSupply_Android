@@ -143,6 +143,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-
-
-}
+    public Cursor getProductByName(String name) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM " + PRODUCT_TABLE + " WHERE " + PRODUCT_COL_NAME + "=?";
+        String[] selectionArgs = { name };
+        Cursor cursor = db.rawQuery(query, selectionArgs);
+        return cursor;
+    }}

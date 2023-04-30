@@ -56,6 +56,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         // Set the values of the views for this item
+        // to set all the products in the productsListView -> if that deletes the products list won't exists
         holder.product_stock_text.setText(String.valueOf(productsStock.get(position)));
         holder.product_name_text.setText(String.valueOf(productsName.get(position)));
         holder.product_brand_text.setText(String.valueOf(productsBrand.get(position)));
@@ -64,8 +65,19 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         // Set the click listener for the edit button
         holder.editProduct_btn.setOnClickListener(v -> {
             int productId = (int) productsID.get(holder.getAdapterPosition());
+            String productColor = (String) productsColor.get(holder.getAdapterPosition());
+            String productsSize = (String) productsColor.get(holder.getAdapterPosition());
+
             Intent intent = new Intent(context, UpdateProductActivity.class);
+            //transferring the data list product of the selected product to the UpdateProductActivity
             intent.putExtra("product_id", productId);
+            intent.putExtra("name", String.valueOf(productsName.get(position)));
+            intent.putExtra("brand", String.valueOf(productsStock.get(position)));
+            intent.putExtra("price", String.valueOf(productsPrice.get(position)));
+            intent.putExtra("stock", String.valueOf(productsStock.get(position)));
+            intent.putExtra("color", productColor);
+            intent.putExtra("size", productsSize);
+
             context.startActivity(intent);
         });
     }

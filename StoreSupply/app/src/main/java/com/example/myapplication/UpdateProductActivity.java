@@ -58,8 +58,6 @@ public class UpdateProductActivity extends AppCompatActivity {
         getAndSetIntentData_SelectedProduct();
     }
 
-
-
     void getAndSetIntentData_SelectedProduct(){
         if(getIntent().hasExtra("stock") &&
                 getIntent().hasExtra("name") &&
